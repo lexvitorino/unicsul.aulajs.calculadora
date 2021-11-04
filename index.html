@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="style.css" rel="stylesheet">
+	<title>CALCULADORA</title>
+
+	<head>
+		<script>
+			function calc(sinal) {
+				var valorPri = document.f_calc.f_pri.value;
+				var valorSeg = document.f_calc.f_seg.value;
+
+				if ((valorPri == "") || (valorSeg == "")) {
+					alert("Digite o primeiro e segundo número");
+				} else {
+					var vpri = parseFloat(valorPri.replace(",", "."));
+					var vseg = parseFloat(valorSeg.replace(",", "."));
+					var calc;
+					var falc = 0;
+
+					if (isNaN(vpri) || isNaN(vseg)) {
+						document.getElementById("resul").value = 'Valor informado inválido';
+						return;
+					}
+
+					switch (sinal) {
+						case "+":
+							calc = vpri + vseg;
+							break;
+						case "-":
+							calc = vpri - vseg;
+							break;
+						case "*":
+							calc = vpri * vseg;
+							break;
+						case "/":
+							if (vseg == 0) {
+								calc = "Não é possível dividir por 0";
+							} else {
+								calc = vpri / vseg;
+							}
+							break;
+						default:
+							calc = 0;
+							break;
+					}
+
+					document.getElementById("resul").value = calc;
+				}
+			}
+
+		</script>
+	</head>
+
+<body>
+
+	<div class="container">
+		<h1>Calculadora</h1>
+		<form class="form" name="f_calc">
+			<div>
+				<label class="title">Primeiro número</label>
+				<input type="text" name="f_pri" value="">
+			</div>
+			<div>
+				<label class="title">Segundo número</label>
+				<input type="text" name="f_seg" value="">
+			</div>
+			<div>
+				<button type="button" onclick="calc('+')">+</button>
+				<button type="button" onclick="calc('-')">-</button>
+				<button type="button" onclick="calc('*')">*</button>
+				<button type="button" onclick="calc('/')">/</button>
+			</div>
+			<div>
+				<label class="title">Resultado</label>
+				<input type="text" id="resul" value="" disabled="disabled">
+			</div>
+		</form>
+	</div>
+
+</body>
+
+</html>
